@@ -36,12 +36,22 @@ class Stack {
       return popped.data;
     }
   };
+
+  traverse = () => {
+    let st = "";
+    let curr = this.top;
+    while (curr) {
+      st += `${curr.color} , ${curr.num}\n`;
+      curr = curr.next;
+    }
+    return st;
+  };
 }
 
 const colors = ["Red", "Blue", "Green", "Yellow"];
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const deck = new Stack();
+const deck = new Stack(20);
 const random = (arr) => {
   const randInd = Math.floor(Math.random() * arr.length);
   return arr[randInd];
@@ -49,19 +59,15 @@ const random = (arr) => {
 
 function o() {
   deck.push(random(colors), random(numbers));
-  console.log(`1) ${deck.peek()}`);
-  deck.pop();
   deck.push(random(colors), random(numbers));
-  console.log(`2) ${deck.peek()}`);
-  deck.pop();
   deck.push(random(colors), random(numbers));
-  console.log(`3) ${deck.peek()}`);
-  deck.pop();
   deck.push(random(colors), random(numbers));
-  console.log(`4) ${deck.peek()}`);
-  deck.pop();
   deck.push(random(colors), random(numbers));
-  console.log(`5) ${deck.peek()}`);
+  console.log(deck.traverse());
+  deck.pop();
+  deck.pop();
+  deck.pop();
+  deck.pop();
   deck.pop();
 }
 
@@ -77,5 +83,5 @@ function t() {
 
 function f() {
   deck.push(random(colors), random(numbers));
-  console.log(`\n--------------\nFirst card in deck: ${deck.peek()}\n`);
+  console.log(`--------------\nFirst card in deck: ${deck.peek()}\n`);
 }
